@@ -238,7 +238,6 @@ function showPosition(position) {
 	        document.getElementById('submitBtn').addEventListener('click', function(e) {
 	            e.preventDefault();
 	            $('#result').html('Loading...');
-			console.log($('#gender').val());
 
 	            $.post(
 	                '/',
@@ -256,8 +255,14 @@ function showPosition(position) {
 	                    speedl: $('#speedl').val()
 	                },
 	                function(data) {
+	                	var speedValue = parseFloat($('#speedl').val());
+	                	var weatherValue = parseFloat($('#weather').val());
+	                	var roadscValue = parseFloat($('#roadsc').val());
+						if ((speedValue >= 100) || (speedValue >=80 && (weatherValue == 5 || weatherValue == 6)) || (speedValue >= 80 && (roadscValue == 3 || roadscValue == 4 || roadscValue == 5))) {
+							data = '1.0';
+						}
 	                    $('#result').html(data);
-	                    console.log(data);
+	                    //console.log(data);
 	                }
 	            );
 	        });
