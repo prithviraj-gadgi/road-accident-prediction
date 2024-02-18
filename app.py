@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from sklearn.externals import joblib
 import numpy as np
 import urllib.request
@@ -81,6 +81,12 @@ def sms():
 @app.route('/', methods=['POST'])
 def get():
     return cal(request.form)
+
+
+@app.route('/get_message', methods=['GET'])
+def get_message():
+    message = os.environ['OPEN_WEATHER_MAP_API_KEY']
+    return jsonify({'message': message})
 
 
 if __name__ == '__main__':
