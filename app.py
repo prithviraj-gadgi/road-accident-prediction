@@ -1,21 +1,27 @@
+import os
+import requests
+import numpy as np
 from flask import Flask, render_template, request, jsonify
 from sklearn.externals import joblib
-import numpy as np
-import urllib.request
-import urllib.parse
-import os
 
 app = Flask(__name__)
 model = joblib.load('model.sav')
 
 
-def sendSMS(apikey, numbers, sender, message):
-    data = urllib.parse.urlencode({'apikey': apikey, 'numbers': numbers, 'message': message, 'sender': sender})
-    data = data.encode('utf-8')
-    request = urllib.request.Request("https://api.textlocal.in/send/?")
-    f = urllib.request.urlopen(request, data)
-    fr = f.read()
-    return (fr)
+def send_sms(message):
+    url = "https://www.fast2sms.com/dev/bulkV2"
+    numbers = "9632029678"
+
+    payload = f'message={message}&language=english&route=q&numbers={numbers}'
+
+    headers = {
+        'authorization': os.environ['FAST2SMS_API_KEY'],
+        'Content-Type': "application/x-www-form-urlencoded",
+        'Cache-Control': "no-cache",
+    }
+
+    response = requests.request("POST", url, data=payload, headers=headers)
+    print(response.text)
 
 
 def cal(ip):
@@ -33,14 +39,14 @@ def cal(ip):
     speedl = input['speedl'][0]
 
     data = np.array(
-        [Did_Police_Officer_Attend, age_of_driver, vehicle_type, age_of_vehicle, engine_cc, day, weather, roadsc, light,
-         gender, speedl])
+        [Did_Police_Officer_Attend, age_of_driver, vehicle_type,
+         age_of_vehicle, engine_cc, day, weather, roadsc, light,
+         gender, speedl]
+    )
 
     print("logging", data)
     data = data.astype(float)
     data = data.reshape(1, -1)
-
-    x = np.array([1, 3.73, 3, 0.69, 125, 4, 1, 1, 1, 1, 30]).reshape(1, -1)
 
     try:
         result = model.predict(data)
@@ -54,33 +60,35 @@ def cal(ip):
 def index():
     return render_template('index.html')
 
+
 @app.route('/home', methods=['GET'])
 def home():
     return render_template('index.html')
 
+
 @app.route('/map', methods=['GET'])
 def map():
     return render_template('map.html')
+
 
 @app.route('/visualization', methods=['GET'])
 def visualization():
     return render_template('visualization.html')
 
 
-@app.route('/sms/', methods=['POST'])
-def sms():
-    res = cal(request.form)
-    try:
-        resp = sendSMS(os.environ['TEXT_LOCAL_API_KEY'], '9632029678', 'TXTLCL', 'Severe acceident')
-        print(resp)
-    except Exception as e:
-        print(e)
-    return res
-
-
 @app.route('/', methods=['POST'])
 def get():
     return cal(request.form)
+
+
+@app.route('/sms', methods=['POST'])
+def sms():
+    message = request.form['message']
+    try:
+        send_sms(message)
+        return 'SMS sent successfully!'
+    except Exception as e:
+        return str(e)
 
 
 @app.route('/get_message', methods=['GET'])

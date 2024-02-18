@@ -153,7 +153,6 @@
 			</div>
 
 			<button type="button" class="btn btn-success btn-block" id="submitBtn">Predict</button>
-	<button type="button" class="btn btn-info btn-block" id="smsbutton">sms</button>
 		</div>
 		<div class="col-4 jumbotron text-center" style="position: fixed; right: 0">
 			<strong>Accident Severity Table <br></strong>
@@ -269,40 +268,26 @@ async function showPosition(position) {
 	                	var roadscValue = parseFloat($('#roadsc').val());
 						if ((speedValue >= 100) || (speedValue >=80 && (weatherValue == 5 || weatherValue == 6)) || (speedValue >= 80 && (roadscValue == 3 || roadscValue == 4 || roadscValue == 5))) {
 							data = '1.0';
+							$.post(
+                                '/sms',
+                                {
+                                    message: "Possibility of Severe Accident\n"
+                                    + "\nLatitude : " + document.getElementById("lat").value
+                                    + "\nLongitude : " + document.getElementById("lon").value
+                                    + "\nWeather condition is " + $('#weather option:selected').text()
+                                    + "\nLight condition is " + $('#light option:selected').text()
+                                    + "\nRoad surface condition is " + $('#roadsc option:selected').text()
+                                },
+                                function(response) {
+                                    alert(response);
+                                }
+                            );
 						}
 	                    $('#result').html(data);
 	                    //console.log(data);
 	                }
 	            );
 	        });
-
-		     document.getElementById('smsbutton').addEventListener('click', function(e) {
-                    e.preventDefault();
-                    $('#result').html('Loading...');
-                        console.log($('#gender').val());
-
-                    $.post(
-                        '/sms/',
-                        {
-                            Did_Police_Officer_Attend: $('#Did_Police_Officer_Attend').val(),
-                            age_of_driver: Math.log(parseInt($('#age_of_driver').val())),
-                            vehicle_type: $('#vehicle_type').val(),
-                            age_of_vehicle: Math.log(parseInt($('#age_of_vehicle').val())),
-                            engine_cc: $('#engine_cc').val(),
-                            day: $('#day').val()[0],
-                            weather: $('#weather').val()[0],
-                            light: $('#light').val()[0],
-                            roadsc: $('#roadsc').val()[0],
-                            gender: $('#gender').val()[0],
-                            speedl: $('#speedl').val()
-                        },
-                        function(data) {
-                            $('#result').html(data);
-                            console.log(data);
-                        }
-                    );
-                });
-
 	    });
 	</script>
 
