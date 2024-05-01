@@ -127,12 +127,13 @@ img {
 </style>
 <body>
 <div class="header">
-  <a href="https://www.iitj.ac.in" target="_blank class="logo">IIT Jodhpur</a>
+  <a style="background: white;">Welcome {{session.name}}</a>
 	<a class="logo" style="color: blue; text-decoration: none; margin-left: 25%; background: white;">Road Accident Prediction</a>
   <div class="header-right">
     <a href="{{ url_for('home') }}">Home</a>
     <a href="{{ url_for('map') }}">Map</a>
     <a href="{{ url_for('visualization') }}">Visualization</a>
+	<a href="{{ url_for('logout') }}"> Logout</a>
   </div>
 </div>
 

@@ -10,3 +10,4 @@ vaex==4.17.0
 toolz==0.12.0
 seaborn==0.11.2
 gmaps==0.9.0
+bcrypt==4.0.1
