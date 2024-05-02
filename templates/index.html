@@ -233,14 +233,50 @@ async function showPosition(position) {
 	                {
 	                    Did_Police_Officer_Attend: $('#Did_Police_Officer_Attend').val(),
 	                    age_of_driver: Math.log(parseInt($('#age_of_driver').val())),
-	                    vehicle_type: $('#vehicle_type').val(),
+	                    vehicle_type: function() {
+	                    				var vehicleType = $('#vehicle_type').val();
+	                    				if (vehicleType === "Pedal cycle") {
+	                    					return "1";
+	                    				} else if (vehicleType === "Motorcycle 50cc and under") {
+	                    					return "2";
+	                    				} else if (vehicleType === "Motorcycle 125cc and under") {
+	                    					return "3";
+	                    				} else if (vehicleType === "Motorcycle over 125cc and up to 500cc") {
+	                    					return "4";
+	                    				} else if (vehicleType === "Motorcycle over 500cc") {
+	                    					return "5";
+	                    				} else if (vehicleType === "Taxi/Private hire car") {
+	                    					return "8";
+	                    				} else if (vehicleType === "Car") {
+	                    					return "9";
+	                    				} else if (vehicleType === "Minibus (8 - 16 passenger seats)") {
+	                    					return "10";
+	                    				} else if (vehicleType === "Bus or coach (17 or more pass seats)") {
+	                    					return "11";
+	                    				} else if (vehicleType === "Tram") {
+	                    					return "18";
+	                    				} else if (vehicleType === "Truck(Goods)") {
+	                    					return "20";
+	                    				} else if (vehicleType === "Electric motorcycle") {
+	                    					return "23";
+	                    				}
+	                    			}(),
 	                    age_of_vehicle: Math.log(parseInt($('#age_of_vehicle').val())),
 	                    engine_cc: $('#engine_cc').val(),
 	                    day: $('#day').val()[0],
 	                    weather: $('#weather').val()[0],
 	                    light: $('#light').val()[0],
 	                    roadsc: $('#roadsc').val()[0],
-	                    gender: $('#gender').val()[0],
+	                    gender: function() {
+									var genderValue = $('#gender').val();
+									if (genderValue === "Male") {
+										return "1";
+									} else if (genderValue === "Female") {
+										return "2";
+									} else if (genderValue === "Unknown") {
+										return "3";
+									}
+								}(),
 	                    speedl: $('#speedl').val()
 	                },
 	                function(data) {
