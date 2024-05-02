@@ -52,37 +52,22 @@
 
 	      	<div class="form-group">
 			    <label for="Age_of_Driver">Age of Driver</label>
-			    <input type="text" class="form-control" name="Age_of_Driver" value="25" id="age_of_driver">
+			    <input type="text" class="form-control" name="Age_of_Driver" value="{{ age_of_driver }}" id="age_of_driver">
 			</div>
 
 	      	<div class="form-group">
 			    <label for="Vehicle_Type">Vehicle Type</label>
-			        <select class="form-control" id="vehicle_type" name="Weather_Conditions">
-		       		<option value="1">1 : Pedal cycle</option>
-			        <option value="2">2 : Motorcycle 50cc and under</option>
-			        <option value="3">3 : Motorcycle 125cc and unders</option>
-			        <option value="4">4 : Motorcycle over 125cc and up to 500cc</option>
-			        <option value="5">5 : Motorcycle over 500cc</option>
-			        <option value="8">8 : Taxi/Private hire car</option>
-			        <option value="9">9 : Car</option>
-			        <option value="10">10 : Minibus (8 - 16 passenger seats)</option>
-			        <option value="11">11 : Bus or coach (17 or more pass seats)</option>
-			        <option value="18">18 : Tram</option>
-			        <option value="20">20 : Truck(Goods)</option>
-			        <option value="23">23 : Electric motorcycle</option>
-			      </select>
-
-			    <!-- <input type="text" class="form-control" name="Vehicle_Type" value="11" id="vehicle_type"> -->
+				<input type="text" class="form-control" name="Weather_Conditions" value="{{ vehicle_type }}" id="vehicle_type">
 			</div>
 
 			<div class="form-group">
 			    <label for="Age_of_Vehicle">Age of Vehicle</label>
-			    <input type="text" class="form-control" name="Age_of_Vehicle" value="10" id="age_of_vehicle">
+			    <input type="text" class="form-control" name="Age_of_Vehicle" value="{{ age_of_vehicle }}" id="age_of_vehicle">
 			</div>
 
 	      	<div class="form-group">
 			    <label for="Engine_Capacity_CC">Engine Capacity in CC</label>
-			    <input type="text" class="form-control" name="Engine_Capacity_CC" value="8300.0" id="engine_cc">
+			    <input type="text" class="form-control" name="Engine_Capacity_CC" value="{{ engine_capacity_in_cc }}" id="engine_cc">
 			</div>
 
 	      	<div class="form-group">
@@ -140,12 +125,7 @@
 
 	      	<div class="form-group">
 			    <label for="gender">Gender</label>
-			    <select class="form-control" name="Road_Surface_Conditions" id="gender">
-		       		<option value="1">1 : Male</option>
-			        <option value="2">2 : Female</option>
-			        <option value="3">3 : Unknown</option>
-			    </select>
-			   <!--  <input type="text" class="form-control" name="gender" value="1" id="gender"> -->
+				<input type="text" class="form-control" name="Road_Surface_Conditions" value="{{ gender }}" id="gender">
 			</div>
 
 	      	<div class="form-group">

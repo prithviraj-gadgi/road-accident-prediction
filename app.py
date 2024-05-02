@@ -86,7 +86,51 @@ def login():
             session['name'] = user['name']
             session['email'] = user['email']
             message = 'Logged in successfully !'
-            return render_template('index.html', message=message)
+            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            email = session.get('email')
+            cursor.execute('SELECT age_of_driver FROM user WHERE email = % s', (email,))
+            age_of_driver = cursor.fetchone()['age_of_driver']
+            cursor.execute('SELECT age_of_vehicle FROM user WHERE email = % s', (email,))
+            age_of_vehicle = cursor.fetchone()['age_of_vehicle']
+            cursor.execute('SELECT engine_capacity_in_cc FROM user WHERE email = % s', (email,))
+            engine_capacity_in_cc = cursor.fetchone()['engine_capacity_in_cc']
+            cursor.execute('SELECT gender FROM user WHERE email = % s', (email,))
+            gender = cursor.fetchone()['gender']
+            if gender == "1":
+                gender = 'Male'
+            elif gender == "2":
+                gender = 'Female'
+            elif gender == "3":
+                gender = 'Unknown'
+            cursor.execute('SELECT vehicle_type FROM user WHERE email = % s', (email,))
+            vehicle_type = cursor.fetchone()['vehicle_type']
+            if vehicle_type == "1":
+                vehicle_type = "Pedal cycle"
+            elif vehicle_type == "2":
+                vehicle_type = "Motorcycle 50cc and under"
+            elif vehicle_type == "3":
+                vehicle_type = "Motorcycle 125cc and under"
+            elif vehicle_type == "4":
+                vehicle_type = "Motorcycle over 125cc and up to 500cc"
+            elif vehicle_type == "5":
+                vehicle_type = "Motorcycle over 500cc"
+            elif vehicle_type == "8":
+                vehicle_type = "Taxi/Private hire car"
+            elif vehicle_type == "9":
+                vehicle_type = "Car"
+            elif vehicle_type == "10":
+                vehicle_type = "Minibus (8 - 16 passenger seats)"
+            elif vehicle_type == "11":
+                vehicle_type = "Bus or coach (17 or more pass seats)"
+            elif vehicle_type == "18":
+                vehicle_type = "Tram"
+            elif vehicle_type == "20":
+                vehicle_type = "Truck(Goods)"
+            elif vehicle_type == "23":
+                vehicle_type = "Electric motorcycle"
+            return render_template('index.html', message=message, age_of_driver=age_of_driver,
+                                   age_of_vehicle=age_of_vehicle, engine_capacity_in_cc=engine_capacity_in_cc,
+                                   gender=gender, vehicle_type=vehicle_type)
         else:
             message = 'Please enter correct email / password !'
     return render_template('login.html', message=message)
@@ -122,7 +166,8 @@ def register():
         elif not userName or not password or not email or not age_of_driver or not vehicle_type or not age_of_vehicle or not engine_capacity_in_cc or not gender:
             message = 'Please fill out the form !'
         else:
-            cursor.execute('INSERT INTO user VALUES (NULL, % s, % s, % s, % s, % s, % s, % s, % s)', (userName, email, password, age_of_driver, vehicle_type, age_of_vehicle, engine_capacity_in_cc, gender,))
+            cursor.execute('INSERT INTO user VALUES (NULL, % s, % s, % s, % s, % s, % s, % s, % s)', (
+            userName, email, password, age_of_driver, vehicle_type, age_of_vehicle, engine_capacity_in_cc, gender,))
             mysql.connection.commit()
             message = 'You have successfully registered !'
     elif request.method == 'POST':
@@ -132,7 +177,51 @@ def register():
 
 @app.route('/home', methods=['GET'])
 def home():
-    return render_template('index.html')
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    email = session.get('email')
+    cursor.execute('SELECT age_of_driver FROM user WHERE email = % s', (email,))
+    age_of_driver = cursor.fetchone()['age_of_driver']
+    cursor.execute('SELECT age_of_vehicle FROM user WHERE email = % s', (email,))
+    age_of_vehicle = cursor.fetchone()['age_of_vehicle']
+    cursor.execute('SELECT engine_capacity_in_cc FROM user WHERE email = % s', (email,))
+    engine_capacity_in_cc = cursor.fetchone()['engine_capacity_in_cc']
+    cursor.execute('SELECT gender FROM user WHERE email = % s', (email,))
+    gender = cursor.fetchone()['gender']
+    if gender == "1":
+        gender = 'Male'
+    elif gender == "2":
+        gender = 'Female'
+    elif gender == "3":
+        gender = 'Unknown'
+    cursor.execute('SELECT vehicle_type FROM user WHERE email = % s', (email,))
+    vehicle_type = cursor.fetchone()['vehicle_type']
+    if vehicle_type == "1":
+        vehicle_type = "Pedal cycle"
+    elif vehicle_type == "2":
+        vehicle_type = "Motorcycle 50cc and under"
+    elif vehicle_type == "3":
+        vehicle_type = "Motorcycle 125cc and under"
+    elif vehicle_type == "4":
+        vehicle_type = "Motorcycle over 125cc and up to 500cc"
+    elif vehicle_type == "5":
+        vehicle_type = "Motorcycle over 500cc"
+    elif vehicle_type == "8":
+        vehicle_type = "Taxi/Private hire car"
+    elif vehicle_type == "9":
+        vehicle_type = "Car"
+    elif vehicle_type == "10":
+        vehicle_type = "Minibus (8 - 16 passenger seats)"
+    elif vehicle_type == "11":
+        vehicle_type = "Bus or coach (17 or more pass seats)"
+    elif vehicle_type == "18":
+        vehicle_type = "Tram"
+    elif vehicle_type == "20":
+        vehicle_type = "Truck(Goods)"
+    elif vehicle_type == "23":
+        vehicle_type = "Electric motorcycle"
+    return render_template('index.html', age_of_driver=age_of_driver, age_of_vehicle=age_of_vehicle,
+                           engine_capacity_in_cc=engine_capacity_in_cc, gender=gender, vehicle_type=vehicle_type)
+
 
 @app.route('/map', methods=['GET'])
 def map():
