@@ -289,6 +289,7 @@ async function showPosition(position) {
                                 '/sms',
                                 {
                                     message: "Possibility of Severe Accident\n"
+                                    + "\nLocation : " + "https://www.google.com/maps/@" + document.getElementById("lat").value + "," + document.getElementById("lon").value + ",21z?entry=ttu"
                                     + "\nLatitude : " + document.getElementById("lat").value
                                     + "\nLongitude : " + document.getElementById("lon").value
                                     + "\nWeather condition is " + $('#weather option:selected').text()
