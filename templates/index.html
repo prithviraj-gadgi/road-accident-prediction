@@ -27,51 +27,25 @@
 
 <div class="container">
 
-	<div class="row" style="margin-top: 50px;">
+	<div class="row" style="margin-top: 30px;">
 		<div class="col-8">
 	      	<div class="form-group">
-			<div class="form-group">
-                            <label for="Did_Police_Officer_Attend">Did Police Officer Attend Scene of Accident</label>
-                            <input type="text" class="form-control" name="Did_Police_Officer_Attend" value="1" id="Did_Police_Officer_Attend">
-                        </div>
-			    <label for="Did_Police_Officer_Attend">Latitude and Longitude</label>
 			 <div class="row">
 			    <div class="col-6">
+					<label for="Did_Police_Officer_Attend">Latitude</label>
 			    <input type="text" class="form-control" name="lat" value="" id="lat">
 				</div>
 				<div class="col-6">
+					<label for="Did_Police_Officer_Attend">Longitude</label>
 			    <input type="text" class="form-control" name="lon" value="" id="lon">
 				</div>
 			</div>
-			    <br>
-			    <center>
-			    	<button id = "getIt" onclick = "getLocation() ">Send Cordinates to Update Conditions</button>
-			    </center>
-
-			</div>
-
-	      	<div class="form-group">
-			    <label for="Age_of_Driver">Age of Driver</label>
-			    <input type="text" class="form-control" name="Age_of_Driver" value="{{ age_of_driver }}" id="age_of_driver">
-			</div>
-
-	      	<div class="form-group">
-			    <label for="Vehicle_Type">Vehicle Type</label>
-				<input type="text" class="form-control" name="Weather_Conditions" value="{{ vehicle_type }}" id="vehicle_type">
 			</div>
 
 			<div class="form-group">
-			    <label for="Age_of_Vehicle">Age of Vehicle</label>
-			    <input type="text" class="form-control" name="Age_of_Vehicle" value="{{ age_of_vehicle }}" id="age_of_vehicle">
-			</div>
-
-	      	<div class="form-group">
-			    <label for="Engine_Capacity_CC">Engine Capacity in CC</label>
-			    <input type="text" class="form-control" name="Engine_Capacity_CC" value="{{ engine_capacity_in_cc }}" id="engine_cc">
-			</div>
-
-	      	<div class="form-group">
-			    <label for="Day_of_Week">Day of Week</label>
+				<div class="row">
+					<div class="col-6">
+						<label for="Day_of_Week">Day of Week</label>
 
 			      <select class="form-control" id="day">
 		       		<option value="1">1 : Sunday</option>
@@ -82,11 +56,9 @@
 			        <option value="6">6 : Friday</option>
 			        <option value="7">7 : Saturday</option>
 			      </select>
-			    <!-- <input type="text" class="form-control" name="Day_of_Week" value="5" id="day"> -->
-			</div>
-
-	      	<div class="form-group">
-			    <label for="Weather_Conditions">Weather Conditions</label>
+					</div>
+					<div class="col-6">
+						<label for="Weather_Conditions">Weather Conditions</label>
 			        <select class="form-control" id="weather" name="Weather_Conditions">
 		       		<option value="1">1 : Fine no high winds</option>
 			        <option value="2">2 : Raining no high winds</option>
@@ -96,21 +68,23 @@
 			        <option value="6">6 : Snowing + high winds</option>
 			        <option value="7">7 : Fog or mist</option>
 			      </select>
-			   <!--  <input type="text" class="form-control" name="Weather_Conditions" value="1" id="weather"> -->
+					</div>
+				</div>
 			</div>
 
-	      	<div class="form-group">
-			    <label for="Light_Conditions">Light_Conditions</label>
+			<div class="form-group">
+				<div class="row">
+					<div class="col-6">
+						<label for="Light_Conditions">Light Conditions</label>
 			    <select class="form-control" name="Light_Conditions" id="light" >
 		       		<option value="1">1 : Daylight</option>
 			        <option value="4">4 : Darkness - lights lit</option>
 			        <option value="5">5 : Darkness - lights unlit</option>
 			        <option value="6">6 : Darkness - no lighting</option>
 			      </select>
-			    <!-- <input type="text" class="form-control" name="Light_Conditions" value="1" id="light" > -->
-			</div>
-	      	<div class="form-group">
-			    <label for="Road_Surface_Conditions">Road Surface Conditions</label>
+					</div>
+					<div class="col-6">
+						<label for="Road_Surface_Conditions">Road Surface Conditions</label>
 
 			    <select class="form-control" name="Road_Surface_Conditions" id="roadsc">
 		       		<option value="1">1 : Dry</option>
@@ -120,31 +94,68 @@
 			        <option value="5">5 : Flood</option>
 			        <option value="7">7 : Mud</option>
 			    </select>
-			    <!-- <input type="text" class="form-control" name="Road_Surface_Conditions" value="1" id="roadsc">
- -->			</div>
-
-	      	<div class="form-group">
-			    <label for="gender">Gender</label>
-				<input type="text" class="form-control" name="Road_Surface_Conditions" value="{{ gender }}" id="gender">
+					</div>
+				</div>
 			</div>
 
 	      	<div class="form-group">
-			    <label for="Speed_limit">Speed Limit</label>
-			    <input type="text" class="form-control" type="text" name="Speed_limit" value="30" id="speedl">
+				<div class="row">
+					<div class="col-6">
+						<label for="Age_of_Driver">Age of Driver</label>
+			    		<input type="text" class="form-control" name="Age_of_Driver" value="{{ age_of_driver }}" id="age_of_driver">
+					</div>
+					<div class="col-6">
+						<label for="Vehicle_Type">Vehicle Type</label>
+						<input type="text" class="form-control" name="Weather_Conditions" value="{{ vehicle_type }}" id="vehicle_type">
+					</div>
+				</div>
 			</div>
 
-			<button type="button" class="btn btn-success btn-block" id="submitBtn">Predict</button>
+			<div class="form-group">
+				<div class="row">
+					<div class="col-6">
+						<label for="Age_of_Vehicle">Age of Vehicle</label>
+			    		<input type="text" class="form-control" name="Age_of_Vehicle" value="{{ age_of_vehicle }}" id="age_of_vehicle">
+					</div>
+					<div class="col-6">
+						<label for="Engine_Capacity_CC">Engine Capacity in CC</label>
+			    		<input type="text" class="form-control" name="Engine_Capacity_CC" value="{{ engine_capacity_in_cc }}" id="engine_cc">
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="row">
+					<div class="col-6">
+						<label for="gender">Gender</label>
+						<input type="text" class="form-control" name="Road_Surface_Conditions" value="{{ gender }}" id="gender">
+					</div>
+					<div class="col-6">
+						<label for="Speed_limit">Speed Limit</label>
+			    		<input type="text" class="form-control" type="text" name="Speed_limit" value="30" id="speedl">
+					</div>
+				</div>
+			</div>
+
+
+
+			<div class="form-group">
+				<label for="Did_Police_Officer_Attend">Number of Police Officers Present at the Scene</label>
+				<input type="text" class="form-control" name="Did_Police_Officer_Attend" value="1" id="Did_Police_Officer_Attend">
+			</div>
+
+
 		</div>
 		<div class="col-4 jumbotron text-center" style="position: fixed; right: 0">
-			<strong>Accident Severity Table <br></strong>
-			<div class="alert alert-warning">
-			  	1 = FATAL<br>
-				2 = SERIOUS<br>
-				3 = SLIGHT <br>
-			</div>
-		    <h3 style="text-align: center;"> OUTPUT PREDICTED : </h3>
-		    <div style="font-size:300%;text-align:center;" id="result"></div>
+		    <h3 style="text-align: center;"><u>Accident Severity</u></h3>
+		    <div style="font-size:150%;text-align:center; color: red;" id="result"></div>
 			<hr>
+			<div>
+				<button id = "getIt" class="btn btn-primary btn-block" onclick = "getLocation() ">Get Co-ordinates</button>
+			</div>
+			<div style="margin-top: 20px;">
+				<button type="button" class="btn btn-success btn-block" id="submitBtn">Predict</button>
+			</div>
 		</div>
 	</div>
 
@@ -301,7 +312,13 @@ async function showPosition(position) {
                                 }
                             );
 						}
-	                    $('#result').html(data);
+	                    if (data == 1.0) {
+							$('#result').html(data + " : Possibility of Fatal Accident!");
+						} else if ( data == 2.0) {
+							$('#result').html(data + " : Possibility of Serious Accident!");
+						} else if (data == 3.0) {
+							$('#result').html(data + " : Possibility of Slite Accident!");
+						}
 	                    //console.log(data);
 	                }
 	            );
