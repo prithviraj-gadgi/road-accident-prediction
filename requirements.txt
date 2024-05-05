@@ -1,5 +1,5 @@
 # conda create --prefix=./venv python=3.6
-# Python 3.6.13 (conda)
+# Python 3.6.13 :: Anaconda, Inc.
 
 Flask==2.0.3
 mysqlclient==1.3.14
