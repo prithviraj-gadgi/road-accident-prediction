@@ -7,6 +7,9 @@ from flask_mysqldb import MySQL
 import MySQLdb.cursors
 import re
 import bcrypt
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 
@@ -29,7 +32,7 @@ def send_sms(message):
     payload = f'message={message}&language=english&route=q&numbers={numbers}'
 
     headers = {
-        'authorization': os.environ['FAST2SMS_API_KEY'],
+        'authorization': os.getenv('FAST2SMS_API_KEY'),
         'Content-Type': "application/x-www-form-urlencoded",
         'Cache-Control': "no-cache",
     }
@@ -250,9 +253,9 @@ def sms():
 
 @app.route('/get_message', methods=['GET'])
 def get_message():
-    message = os.environ['OPEN_WEATHER_MAP_API_KEY']
+    message = os.getenv('OPEN_WEATHER_MAP_API_KEY')
     return jsonify({'message': message})
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(load_dotenv=True, debug=True, host='0.0.0.0', ssl_context=('cert.pem', 'key.pem'))
