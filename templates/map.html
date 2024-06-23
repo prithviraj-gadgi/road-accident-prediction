@@ -1,35 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
+  <!-- Bootstrap CSS -->
 
-    <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/static/index.css">
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <title>Map</title>
+  <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/static/index.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <title>Map</title>
 </head>
+
 <body>
 
-<div class="header">
-  <a style="background: white;">Welcome {{session.name}}</a>
-	<a class="logo" style="color: blue; text-decoration: none; margin-left: 25%; background: white;">Road Accident Prediction</a>
-  <div class="header-right">
-    <a href="{{ url_for('home') }}">Home</a>
-    <a href="{{ url_for('map') }}">Map</a>
-    <a href="{{ url_for('visualization') }}">Visualization</a>
-	<a href="{{ url_for('logout') }}"> Logout</a>
+  <div class="header">
+    <a style="background: white;">Welcome {{session.name}}</a>
+    <a class="logo" style="color: blue; text-decoration: none; margin-left: 25%; background: white;">Road Accident
+      Prediction</a>
+    <div class="header-right">
+      <a href="{{ url_for('home') }}">Home</a>
+      <a href="{{ url_for('map') }}">Map</a>
+      <a href="{{ url_for('visualization') }}">Visualization</a>
+      <a href="{{ url_for('logout') }}"> Logout</a>
+    </div>
   </div>
-</div>
 
-<!-- Load require.js. Delete this if your page already loads require.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js" crossorigin="anonymous"></script>
+  <!-- Load require.js. Delete this if your page already loads require.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"
+    integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"
+    crossorigin="anonymous"></script>
 
-<script type="application/vnd.jupyter.widget-state+json">
+  <script type="application/vnd.jupyter.widget-state+json">
 {
   "version_major": 2,
   "version_minor": 0,
@@ -67251,9 +67256,10 @@
   }
 }
 </script>
-<script type="application/vnd.jupyter.widget-view+json">
+  <script type="application/vnd.jupyter.widget-view+json">
 {"version_major": 2, "version_minor": 0, "model_id": "290d241030fa4284b63573677d543779"}
 </script>
-<footer class="footer">Copyright &copy; Prithviraj (M22AI603)</footer>
+  <footer class="footer">Copyright &copy; Prithviraj (M22AI603)</footer>
 </body>
+
 </html>
