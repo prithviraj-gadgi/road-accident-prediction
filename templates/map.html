@@ -11,20 +11,75 @@
   <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="/static/index.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <title>Map</title>
+  <title>Road Accident Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #2c3e50;
+            color: white;
+            border-bottom: 2px solid #ddd;
+        }
+        .title {
+            font-size: 24px;
+        }
+        .buttons {
+            display: flex;
+        }
+        .buttons a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: white;
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #2980b9;
+        }
+        .buttons a:hover {
+            background-color: #3498db;
+        }
+        .burger {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        @media (max-width: 600px) {
+            .buttons {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+            }
+            .buttons a {
+                margin: 5px 0;
+                text-align: center;
+                width: 100%;
+            }
+            .burger {
+                display: block;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
   <div class="header">
-    <a style="background: white;">Welcome {{session.name}}</a>
-    <a class="logo" style="color: blue; text-decoration: none; margin-left: 25%; background: white;">Road Accident
-      Prediction</a>
-    <div class="header-right">
-      <a href="{{ url_for('home') }}">Home</a>
-      <a href="{{ url_for('map') }}">Map</a>
-      <a href="{{ url_for('visualization') }}">Visualization</a>
-      <a href="{{ url_for('logout') }}"> Logout</a>
+    <div>Welcome {{session.name}}</div>
+    <div class="title">Road Accident Prediction</div>
+    <div class="burger" onclick="toggleMenu()">&#9776;</div>
+    <div class="buttons" id="menu">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('map') }}">Map</a>
+        <a href="{{ url_for('visualization') }}">Visualisation</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
     </div>
   </div>
 
@@ -33,6 +88,17 @@
     integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"
     crossorigin="anonymous"></script>
+
+  <script>
+      function toggleMenu() {
+        var menu = document.getElementById("menu");
+        if (menu.style.display === "flex") {
+            menu.style.display = "none";
+        } else {
+            menu.style.display = "flex";
+        }
+      }
+  </script>
 
   <script type="application/vnd.jupyter.widget-state+json">
 {
