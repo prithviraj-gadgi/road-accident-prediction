@@ -22,6 +22,8 @@ A Predictive Model of Road Traffic Accidents
 > conda activate venv
 > 
 > pip install -r requirements.txt
+> 
+> conda install -c conda-forge gcc
 
 ## Execute below command in Git Bash to generate a new self-signed SSL certificate
 > openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes
